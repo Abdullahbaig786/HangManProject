@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>HangMan Game</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  </link>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div id="game-intro">
+    <button id="start">start game</button>
+  </div>
+  <div id="game-screen">
+    <h1>Hangman<br>Your favorite classroom pastime returns!</h1>
+    <p id="dashes"></p>
+    <form name="rateformular">
+      <input name="sign" type="text" size="" maxlength="1">
+      <input id="ratebutton" name="ratebutton" type="button" value="Guess">
+      <p id="generateLetter">Wrong Letters:</p>
+      <img src="Hangman.png" id="hangman"><br />
+      <input name="refresh" type="button" value="New Game" onClick="location.reload()">
+    </form>
+  </div>
+  <div id="game-end"></div>
+  <script type="text/javascript" src="game.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+body {
+  padding: 0;
+  text-align: center;
+  background-color: coral;
+}
+
+#alphabets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#alphabets div {
+  padding: 1em;
+  border: 1px solid;
+  margin: 0.2em;
+  background-color: white;
+}
+
+#game-screen {
+  display: none;
+}
