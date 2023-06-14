@@ -85,7 +85,7 @@ class HangmanGame {
       generateLetter.appendChild(letter);
       this.counter++;
       var hangman = document.getElementById("hangman");
-      hangman.src = "Hangman.png" + this.counter + ".png";
+      hangman.src = "Hangman.png";
     }
 
     //checks if all letters have been found
@@ -105,7 +105,16 @@ class HangmanGame {
     }
   }
 }
-const game = new HangmanGame();
+let checkButton = document.getElementById("ratebutton");
+
+const game = new HangmanGame([
+  ["I", "R", "O", "N", "H", "A", "C", "K"],
+  ["B", "A", "R", "C", "E", "L", "O", "N", "A"],
+  ["W", "A", "T", "E", "R"],
+  ["L", "A", "N", "D", "S", "C", "A", "P", "E"],
+  ["C", "H", "O", "C", "O", "L", "A", "T", "E"],
+  ["G", "E", "R", "M", "A", "N", "Y"],
+]);
 const startButton = document.getElementById("start");
 startButton.addEventListener("click", () => {
   console.log("clicked");
@@ -113,22 +122,13 @@ startButton.addEventListener("click", () => {
 });
 
 // Create a new instance of HangmanGame
-const hangmanGame = new HangmanGame([
-  ["I", "R", "O", "N", "H", "A", "C", "K"],
-  ["B", "A", "R", "C", "E", "L", "O", "N", "A"],
-  ["W", "A", "T", "E", "R"],
-  ["E", "D", "U", "C", "A", "T", "I", "O", "N"],
-  ["C", "H", "O", "C", "O", "L", "A", "T", "E"],
-  ["G", "E", "R", "M", "A", "N", "Y"],
-]);
 
 function init() {
-  hangmanGame.initializeSelectWord();
-  hangmanGame.printSelectWord();
+  game.initializeSelectWord();
+  game.printSelectWord();
 }
 
 window.onload = init;
-
 checkButton.addEventListener("click", function () {
-  hangmanGame.checkLetter();
+  game.checkLetter();
 });
