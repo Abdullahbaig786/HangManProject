@@ -1,9 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  padding: 0;
+  margin: 0;
   text-align: center;
   background-color: coral;
+  font-family: fantasy;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-*/ #alphabets {
+
+#rope {
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+#game-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#alphabets {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,14 +46,149 @@ body {
   display: none;
 }
 
-#game-intro {
-  display: flex;
-  justify-content: center; /* Align button horizontally in the center */
-  align-items: center; /* Align button vertically in the center */
-  /* Additional flex properties as needed */
+#game-end {
+  display: none;
 }
 
+#game-end-winner {
+  display: none;
+}
+
+#pTag {
+  margin-top: auto;
+}
+
+#newGame {
+  background-color: #222;
+  border-radius: 4px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+  min-height: 44px;
+  min-width: 10px;
+  outline: none;
+  overflow: hidden;
+  padding: 9px 20px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 40%;
+}
+
+#newGame:hover,
+#newGame:focus {
+  opacity: 0.75;
+}
+
+#ratebutton {
+  background-color: #222; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  opacity: 0.85;
+}
+#para {
+  margin-left: 100px;
+  margin-right: 100px;
+  text-align: center;
+}
+
+/* Start button Properties */
 #start {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
   display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
   justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#start:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+#start:hover:after {
+  transform: translate(0, 0);
+}
+
+#start:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+#start:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  #start {
+    padding: 0 40px;
+  }
+}
+
+/* rope Image Properties */
+#rope {
+  max-width: 40%;
+  height: 50%;
+}
+#rope:hover {
+  animation: Shake 0.5s linear infinite;
+}
+@keyframes Shake {
+  0% {
+    transform: rotate(5deg);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
 }

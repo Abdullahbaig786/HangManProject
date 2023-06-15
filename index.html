@@ -7,33 +7,38 @@
   </link>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+  <img id="rope" src="r5.png" alt="picture">
   <div id="game-intro">
     <button id="start">start game</button>
-    <br>
-    <br>
-    <marquee width="50%">
-      Geeksforgeeks
-    </marquee>
+    <div id="pTag">
+      <h2>Hangman</h2>
+      <p id="para">Hangman is a guessing game for two or more players. One player thinks of a word, phrase or
+        sentence
+        and the other(s) tries to guess it by suggesting letters within a certain number of guesses </p>
+    </div>
   </div>
 
+
   <div id="game-screen">
-    <h1>Hangman<br>Your favorite classroom pastime returns!</h1>
+    <h1>'Hangman'<br>Your favorite childhood memory</h1>
+    <p id="catagoryName"></p>
     <p id="dashes"></p>
     <form name="rateformular">
       <input name="sign" type="text" size="" maxlength="1">
       <input id="ratebutton" name="ratebutton" type="button" value="Guess">
       <p id="generateLetter">Wrong Letters:</p>
-      <img src="Hangman.png" id="hangman"><br />
-      <input name="refresh" type="button" value="New Game" onClick="location.reload()">
+
+      <input id="newGame" name="refresh" type="button" value="New Game" onClick="location.reload()">
     </form>
   </div>
 
-  <div id="game-end"></div>
-  <p>Game End Screen</p>
+  <div id="game-end">!!! GAME OVER !!!</div>
+  <div id="game-end-winner">!!! YOU WIN !!!</div>
+
   <script type="text/javascript" src="game.js"></script>
 </body>
 
