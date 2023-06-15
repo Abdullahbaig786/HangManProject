@@ -3,8 +3,7 @@ body {
   text-align: center;
   background-color: coral;
 }
-
-#alphabets {
+*/ #alphabets {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,4 +19,16 @@ body {
 
 #game-screen {
   display: none;
+}
+
+#game-intro {
+  display: flex;
+  justify-content: center; /* Align button horizontally in the center */
+  align-items: center; /* Align button vertically in the center */
+  /* Additional flex properties as needed */
+}
+
+#start {
+  display: flex;
+  justify-content: center;
 }

@@ -35,6 +35,7 @@ class HangmanGame {
     this.counter = 0;
     this.startScreen = document.getElementById("game-intro");
     this.gameScreen = document.getElementById("game-screen");
+    this.endScreen = document.getElementById("game-end");
   }
 
   // Word length Dashes print
@@ -42,6 +43,11 @@ class HangmanGame {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
     this.initializeSelectWord();
+  }
+
+  end() {
+    this.gameScreen.style.display = "none";
+    this.endScreen.style.display = "block";
   }
   initializeSelectWord() {
     for (let i = 0; i < this.selectWord.length; i++) {
@@ -57,6 +63,17 @@ class HangmanGame {
       con.appendChild(pop);
     }
   }
+  // let categories = function() {
+  //   if (this.selectWord === this.game[0]) {
+  //     categoryName.innerHTML = "This is A category";
+  //   } else if (this.selectWord === this.game[1]) {
+  //     categoryName.innerHTML = "This is B category";
+  //   } else if (this.selectWord === this.game[2]) {
+  //     categoryName.innerHTML = "This is C category";
+  //   } else if (this.selectWord === this.game[3]) {
+  //     categoryName.innerHTML = "This is D category";
+  //   }
+  // };
 
   // Check if the guessed letter matches one or more letters in the word
   checkLetter() {
@@ -102,6 +119,10 @@ class HangmanGame {
     //once you got six wrong letters, you lose
     if (this.counter === 6) {
       window.alert("Uh...I guess you're dead now.");
+      startButton.addEventListener("click", () => {
+        console.log("clicked");
+        game.start();
+      });
     }
   }
 }
@@ -132,3 +153,5 @@ window.onload = init;
 checkButton.addEventListener("click", function () {
   game.checkLetter();
 });
+
+//
