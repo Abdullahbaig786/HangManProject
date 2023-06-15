@@ -1,119 +1,3 @@
-// class Game {
-//   constructor() {
-//     this.alphabets = [
-//       "a",
-//       "b",
-//       "c",
-//       "d",
-//       "e",
-//       "f",
-//       "g",
-//       "h",
-//       "i",
-//       "j",
-//       "k",
-//       "l",
-//       "m",
-//       "n",
-//       "o",
-//       "p",
-//       "q",
-//       "r",
-//       "s",
-//       "t",
-//       "u",
-//       "v",
-//       "w",
-//       "x",
-//       "y",
-//       "z",
-//     ];
-//     this.words = ["hangman", "javascript", "programming", "openai", "game"];
-//     this.startScreen = document.getElementById("game-intro");
-//     this.gameScreen = document.getElementById("game-screen");
-//     this.gameEnd = document.getElementById("game-end");
-//     this.categories = this.categories; // Array of topics
-//     this.getHint = this.getHint; // Word getHint
-//     this.chosenCategory = this.chosenCategory; // Selected catagory
-//     this.word = this.word; // Selected word
-//     this.guess = this.guess; // Geuss
-//     this.geusses = []; // Stored geusses
-//     this.lives = 3; // Lives
-//     this.counter = this.counter; // Count correct geusses
-//     this.space; // Number of spaces in word '-'
-//   }
-
-//   start() {
-//     this.startScreen.style.display = "none";
-//     this.gameScreen.style.display = "block";
-//     this.appendAlphabet();
-//   }
-//   //Alphabets display
-//   appendAlphabet() {
-//     const alphabetParentElement = document.getElementById("alphabets");
-//     for (let i = 0; i < this.alphabets.length; i++) {
-//       const alphabetElement = document.createElement("button");
-//       alphabetElement.innerHTML = this.alphabets[i];
-//       alphabetParentElement.appendChild(alphabetElement);
-//     }
-//   }
-//   //Select Cateogary
-//   selectCatagory() {
-//     if (this.chosenCategory === this.categories[0]) {
-//       categoryName.innerHTML = "This is A category";
-//     } else if (this.chosenCategory === this.categories[1]) {
-//       categoryName.innerHTML = "This is B category";
-//     } else if (this.chosenCategory === this.categories[2]) {
-//       categoryName.innerHTML = "This is C category";
-//     } else if (this.chosenCategory === this.categories[3]) {
-//       categoryName.innerHTML = "This is D category";
-//     }
-//   }
-//   // Create Guesses
-//   createGuess() {
-//     const wordHold = document.getElementById("hold");
-//     const correct = document.createElement("ul");
-//     for (let i = 0; i < this.word.length; i++) {
-//       correct.setAttribute("id", "my-word");
-//       this.guess = document.createElement("li");
-//       this.guess.setAttribute("class", "guess");
-//       if (this.word[i] === "-") {
-//         this.guess.innerHTML = "-";
-//         space = 1;
-//       } else {
-//         this.guess.innerHTML = "_";
-//       }
-//       this.geusses.push(this.guess);
-//       wordHold.appendChild(correct);
-//       correct.appendChild(this.guess);
-//     }
-//   }
-
-//   //Show Lives
-//   showLives() {
-//     const getLives = document.getElementById("lives");
-//     showLives.innerHTML = "Total Lives Remaining" + this.lives;
-//     if (this.lives < 1) {
-//       showLives.innerHTML = "Game Over";
-//     } else {
-//       this.showLives.innerHTML = "You Win";
-//     }
-//   }
-// }
-// const game = new Game();
-// const startButton = document.getElementById("start-button");
-
-// startButton.onclick = function () {
-//   console.log("clicked");
-//   game.start();
-// };
-
-// startButton.addEventListener("click", () => {
-//   console.log("clicked");
-//   game.start();
-// });
-
-// HangmanGame class
 class HangmanGame {
   constructor(words) {
     this.alphabets = [
@@ -151,6 +35,10 @@ class HangmanGame {
     this.counter = 0;
     this.startScreen = document.getElementById("game-intro");
     this.gameScreen = document.getElementById("game-screen");
+    this.endScreen = document.getElementById("game-end");
+    this.gameEndWinner = document.getElementById("game-end-winner");
+    this.categoryNames = document.getElementById("catagoryName");
+    this.pTag = document.getElementById("pTag");
   }
 
   // Word length Dashes print
@@ -158,6 +46,18 @@ class HangmanGame {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
     this.initializeSelectWord();
+  }
+  //LOSER
+  end() {
+    this.gameScreen.style.display = "none";
+    this.startScreen.style.display = "none";
+    this.endScreen.style.display = "block";
+  }
+  //WINNER
+  gameWinner() {
+    this.gameScreen.style.display = "none";
+    this.startScreen.style.display = "none";
+    this.gameEndWinner.style.display = "block";
   }
   initializeSelectWord() {
     for (let i = 0; i < this.selectWord.length; i++) {
@@ -173,10 +73,33 @@ class HangmanGame {
       con.appendChild(pop);
     }
   }
+  // select category
+
+  categories() {
+    // const words =[...this.words];
+    const words = this.words.map((e) => {
+      return e.join("");
+    });
+    let wd = words[words.indexOf(this.word.join(""))];
+    if (wd === words[0]) {
+      this.categoryNames.innerHTML = "Category: Any institute Name";
+    }
+    if (wd === words[1]) {
+      this.categoryNames.innerHTML = "Cteogary: City Name";
+    } else if (wd === words[2]) {
+      this.categoryNames.innerHTML = "Cateogary: Drink";
+    } else if (wd === words[3]) {
+      this.categoryNames.innerHTML = "Cateogary: Nature";
+    } else if (wd === words[4]) {
+      this.categoryNames.innerHTML = "Cateogary: Food";
+    } else if (wd === words[5]) {
+      this.categoryNames.innerHTML = "Cateogary: Country";
+    }
+  }
 
   // Check if the guessed letter matches one or more letters in the word
   checkLetter() {
-    // console.log("calling function");
+    this.categories();
     var f = document.rateformular;
     var b = f.elements["sign"]; // elements.[id] means u can get the form id like this
     var sign = b.value; // the letter provided by the user
@@ -201,7 +124,7 @@ class HangmanGame {
       generateLetter.appendChild(letter);
       this.counter++;
       var hangman = document.getElementById("hangman");
-      hangman.src = "Hangman.png" + this.counter + ".png";
+      //hangman.src = "Hangman.png";
     }
 
     //checks if all letters have been found
@@ -211,17 +134,29 @@ class HangmanGame {
         finish = false;
       }
     }
+    //Third Screen
     if (finish) {
-      window.alert("You win!");
+      // window.alert("You win!");
+      this.gameWinner();
     }
 
     //once you got six wrong letters, you lose
     if (this.counter === 6) {
-      window.alert("Uh...I guess you're dead now.");
+      // window.alert("Uh...I guess you're dead now.");
+      this.end();
     }
   }
 }
-const game = new HangmanGame();
+let checkButton = document.getElementById("ratebutton");
+
+const game = new HangmanGame([
+  ["I", "R", "O", "N", "H", "A", "C", "K"],
+  ["B", "A", "R", "C", "E", "L", "O", "N", "A"],
+  ["W", "A", "T", "E", "R"],
+  ["L", "A", "N", "D", "S", "C", "A", "P", "E"],
+  ["C", "H", "O", "C", "O", "L", "A", "T", "E"],
+  ["G", "E", "R", "M", "A", "N", "Y"],
+]);
 const startButton = document.getElementById("start");
 startButton.addEventListener("click", () => {
   console.log("clicked");
@@ -229,22 +164,13 @@ startButton.addEventListener("click", () => {
 });
 
 // Create a new instance of HangmanGame
-const hangmanGame = new HangmanGame([
-  ["I", "R", "O", "N", "H", "A", "C", "K"],
-  ["B", "A", "R", "C", "E", "L", "O", "N", "A"],
-  ["W", "A", "T", "E", "R"],
-  ["E", "D", "U", "C", "A", "T", "I", "O", "N"],
-  ["C", "H", "O", "C", "O", "L", "A", "T", "E"],
-  ["G", "E", "R", "M", "A", "N", "Y"],
-]);
 
 function init() {
-  hangmanGame.initializeSelectWord();
-  hangmanGame.printSelectWord();
+  game.initializeSelectWord();
+  game.printSelectWord();
 }
 
 window.onload = init;
-
 checkButton.addEventListener("click", function () {
-  hangmanGame.checkLetter();
+  game.checkLetter();
 });
