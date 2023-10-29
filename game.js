@@ -1,47 +1,19 @@
 class HangmanGame {
   constructor(words) {
-    this.alphabets = [
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-    ];
     this.words = words;
     this.random = Math.floor(Math.random() * (this.words.length - 1));
     this.word = this.words[this.random];
     this.selectWord = new Array(this.word.length);
     this.counter = 0;
+    //screen
     this.startScreen = document.getElementById("game-intro");
     this.gameScreen = document.getElementById("game-screen");
-    this.endScreen = document.getElementById("game-end");
+    this.endScreen = document.getElementById("game-end"); //game over loser screens
     this.gameEndWinner = document.getElementById("game-end-winner");
     this.categoryNames = document.getElementById("catagoryName");
-    this.pTag = document.getElementById("pTag");
   }
 
-  // Word length Dashes print
+  // Word length Dashes prints
   start() {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
@@ -59,32 +31,33 @@ class HangmanGame {
     this.startScreen.style.display = "none";
     this.gameEndWinner.style.display = "block";
   }
+  //Check word length and count dashes
   initializeSelectWord() {
     for (let i = 0; i < this.selectWord.length; i++) {
       this.selectWord[i] = "_ ";
     }
   }
 
-  // Print the selectWord array to the dashes element
+  // Print the selectWord array into dashes elements
   printSelectWord() {
-    for (var i = 0; i < this.selectWord.length; i++) {
-      var con = document.getElementById("dashes");
-      var pop = document.createTextNode(this.selectWord[i]);
-      con.appendChild(pop);
+    for (let i = 0; i < this.selectWord.length; i++) {
+      let con = document.getElementById("dashes");
+      let pop = document.createTextNode(this.selectWord[i]);
+      con.appendChild(pop); //append pop inside the con
     }
+    //console.log(this.word);
   }
-  // select category
 
+  // select category
   categories() {
-    // const words =[...this.words];
     const words = this.words.map((e) => {
       return e.join("");
     });
-    let wd = words[words.indexOf(this.word.join(""))];
+    //words has array of words
+    let wd = words[words.indexOf(this.word.join(""))]; //
     if (wd === words[0]) {
       this.categoryNames.innerHTML = "Category: Any institute Name";
-    }
-    if (wd === words[1]) {
+    } else if (wd === words[1]) {
       this.categoryNames.innerHTML = "Cteogary: City Name";
     } else if (wd === words[2]) {
       this.categoryNames.innerHTML = "Cateogary: Drink";
@@ -100,11 +73,11 @@ class HangmanGame {
   // Check if the guessed letter matches one or more letters in the word
   checkLetter() {
     this.categories();
-    var f = document.rateformular;
-    var b = f.elements["sign"]; // elements.[id] means u can get the form id like this
-    var sign = b.value; // the letter provided by the user
+    let f = document.rateformular; //Parent Form
+    let b = f.elements["sign"]; // take all the elements of sign id
+    let sign = b.value; // inside the sign alphabet provided by the user
     sign = sign.toUpperCase();
-    for (var i = 0; i < this.word.length; i++) {
+    for (let i = 0; i < this.word.length; i++) {
       if (this.word[i] === sign) {
         this.selectWord[i] = sign + " ";
         var count = true;
@@ -112,24 +85,24 @@ class HangmanGame {
       b.value = "";
     }
 
-    //deletes the guessfield and replaces it with the new one
-    var con = document.getElementById("dashes");
+    //deletes the old dashes of word and replaces it with the new one
+    let con = document.getElementById("dashes");
     con.innerHTML = "";
     this.printSelectWord();
 
     // if a guessed letter is not in the word, the letter will be put on the "wrong letters"-list
     if (!count) {
-      var generateLetter = document.getElementById("generateLetter");
-      var letter = document.createTextNode(" " + sign);
+      let generateLetter = document.getElementById("generateLetter"); //Wrong letters
+      let letter = document.createTextNode(" " + sign);
       generateLetter.appendChild(letter);
       this.counter++;
-      var hangman = document.getElementById("hangman");
+      // let hangman = document.getElementById("hangman");
       //hangman.src = "Hangman.png";
     }
 
     //checks if all letters have been found
-    var finish = true;
-    for (var i = 0; i < this.selectWord.length; i++) {
+    let finish = true;
+    for (let i = 0; i < this.selectWord.length; i++) {
       if (this.selectWord[i] === "_ ") {
         finish = false;
       }
@@ -151,15 +124,14 @@ let checkButton = document.getElementById("ratebutton");
 
 const game = new HangmanGame([
   ["I", "R", "O", "N", "H", "A", "C", "K"],
-  ["B", "A", "R", "C", "E", "L", "O", "N", "A"],
+  ["B", "E", "R", "L", "I", "N"],
   ["W", "A", "T", "E", "R"],
-  ["L", "A", "N", "D", "S", "C", "A", "P", "E"],
+  ["M", "O", "U", "N", "T", "A", "I", "N", "S"],
   ["C", "H", "O", "C", "O", "L", "A", "T", "E"],
   ["G", "E", "R", "M", "A", "N", "Y"],
 ]);
 const startButton = document.getElementById("start");
 startButton.addEventListener("click", () => {
-  console.log("clicked");
   game.start();
 });
 
@@ -169,7 +141,7 @@ function init() {
   game.initializeSelectWord();
   game.printSelectWord();
 }
-
+// Run when entire webpage  have finished loading
 window.onload = init;
 checkButton.addEventListener("click", function () {
   game.checkLetter();
