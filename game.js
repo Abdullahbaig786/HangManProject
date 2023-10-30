@@ -13,7 +13,7 @@ class HangmanGame {
     this.categoryNames = document.getElementById("catagoryName");
   }
 
-  // Word length Dashes prints
+  // Word length Dashes print
   start() {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
@@ -38,7 +38,7 @@ class HangmanGame {
     }
   }
 
-  // Print the selectWord array into dashes elements
+  // Print the selectWord array into dashes element
   printSelectWord() {
     for (let i = 0; i < this.selectWord.length; i++) {
       let con = document.getElementById("dashes");
